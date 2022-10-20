@@ -1,0 +1,109 @@
+:root {
+  --white: #fff;
+  --dark: #000;
+  --trans-dark: rgba(0, 0, 0, 0.07);
+  --secondary-trans-dark: rgba(0, 0, 0, 0.175);
+  --primary-blue: #5e72e4;
+  --secondary-blue: #7795f8;
+  --tertiary-blue: #6772e5;
+  --quaternary-blue: #555abf;
+  --tertiary-blue: #0099e5;
+  --navy-blue: #172b4d;
+  --grey: #525f7f;
+  --late-primary-grey: #f5f7f9;
+  --late-grey: #8898aa;
+  --light-grey: rgb(130 130 134 / 10%);
+  --primary-grey: rgba(255, 255, 255, 0.1);
+  --secondary-grey: rgba(255, 255, 255, 0.2);
+  --tertiary-grey: rgba(255, 255, 255, 0.3);
+  --quaternary-grey: rgba(255, 255, 255, 0.05);
+  --quinary-grey: rgba(255, 255, 255, 0.15);
+  --trans-grey: rgba(255, 255, 255, 0.04);
+  --dark-grey: rgba(50, 50, 93, 0.1);
+  --primary-violet: #32325d;
+  --secondary-violet: #4c555a;
+  --tertiary-violet: #0d2b3e;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: open sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  color: var(--white);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: var(--white);
+    background: var(--white);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--primary-grey);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--tertiary-blue);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-blue);
+}
+
+
+
+@media (max-width: 2000px) {
+  html{
+    font-size: 24px;
+  }
+}
+@media (max-width: 1920px) {
+  html{
+    font-size: 20px;
+  }
+}
+@media (max-width: 1600px) {
+  html{
+    font-size: 18px;
+  }
+}
+@media (max-width: 1200px) {
+  html{
+    font-size: 16px;
+  }
+}
+@media (max-width: 1024px) {
+  html{
+    font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  html{
+    font-size: 12px;
+  }
+}

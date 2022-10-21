@@ -1,11 +1,11 @@
- const documentationSideData = [
+const documentationSideData = [
   {
     name: "Get Started",
     path: "/documentation",
   },
   {
     name: "CLI",
-    path: "",
+    path: "/documentation/cli",
   },
   {
     name: "Packages",
@@ -43,8 +43,8 @@
   },
   {
     name: "Examples",
-    path: ""
-  }
+    path: "",
+  },
 ];
 
 const teamData = [
@@ -126,4 +126,50 @@ much easier now, you can also pass pretty URLs now.`,
   localizationFeat: `Having customers from multiple countries? We got your back!`,
 };
 
-export { documentationSideData,teamData, technologyData, featureData };
+const cliTableData = [
+  {
+    command: 'njs2 install',
+    description: 'Used to install the njs2 packages/plugins and generates API structure and configurations'
+  },
+  {
+    command: 'njs2 compile',
+    description: 'Used to compile the plugins and generates the build'
+  },
+  {
+    command: 'njs2 create-endpoint',
+    description: 'Generates API structure'
+  },
+  {
+    command: 'njs2 update-postman',
+    description: 'Generates postman export definitions for all the API endpoints'
+  },
+  {
+    command: 'njs2 create-event',
+    description: 'Generates Event structure'
+  },
+]
+
+const sectionTitle:any = {
+  api: "Rest API endpoint",
+  authentication: "Authentication system",
+  customRouting: "Custom routing",
+  localization: "Localization support",
+  postman: "Postman integration",
+  server: "Server vs Serverless",
+  documentation:'Getting started',
+  cli: "CLI"
+};
+
+const sectionSubHeader: any ={
+  cli: "Njs2 command line interface helps to create, compile and maintain Njs2 projects."
+}
+
+export {
+  documentationSideData,
+  teamData,
+  technologyData,
+  featureData,
+  sectionTitle,
+  cliTableData,
+  sectionSubHeader
+};

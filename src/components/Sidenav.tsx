@@ -12,6 +12,8 @@ interface props {
 const Sidenav = () => {
   const [exampleData, setExampleData] = useState<Array<any>>([]);
   const router = useRouter();
+  const {title}=router.query;
+
   useEffect(() => {
     getExampleHeader();
   }, []);
@@ -29,36 +31,34 @@ const Sidenav = () => {
     router.push(path);
   }
 
-  const exampleSubnav=useMemo(()=>{
-    return <ListContainer>{exampleData?.map(({el},index)=>
+  const ExampleSubnav = useMemo(() => {
+    return exampleData?.map(({ example_name ,sha}, index) => (
       <List
         key={index}
-        onClick={() => handleNavigation('/documentation/example')}
-        isActive={false}
+        onClick={() => handleNavigation(`/documentation/example?title=${example_name}&sha=${sha}`)}
+        isActive={example_name==title}
         isChildList={true}
       >
-        {el?.example_name}
+        {example_name}
       </List>
-
-    )}
-    </ListContainer>
-  },[exampleData])
-
+    ));
+  }, [title,exampleData]);
 
   const SideNavList = useMemo(() => {
     return documentationSideData.map(({ name, path, subNav }, index) => (
       <List
         key={index}
-        onClick={() =>
-          handleNavigation(subNav?.length ? subNav[0]?.path : path)
-        }
         isActive={router.pathname === path && !subNav?.length ? true : false}
       >
-        {name}
-        {name=='Examples'?
-        exampleSubnav
-        :
-        subNav?.length && (
+        <span
+          onClick={() =>
+            handleNavigation(subNav?.length ? subNav[0]?.path : path)
+          }
+        >
+          {name}
+        </span>
+        {name == "Examples" && <ListContainer>{ExampleSubnav}</ListContainer>}
+        {subNav?.length && (
           <ListContainer>
             {subNav.map(({ name, path }, index) => (
               <List
@@ -71,11 +71,10 @@ const Sidenav = () => {
               </List>
             ))}
           </ListContainer>
-            
         )}
       </List>
     ));
-  }, []);
+  }, [title,exampleData]);
 
   return (
     <Navbar>

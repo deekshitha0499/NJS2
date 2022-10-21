@@ -23,3 +23,34 @@ export const Title = styled.h2`
   font-size: 2.1875rem;
   font-weight: 600;
 `;
+
+
+export const DocumentTitle = styled.h2`
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  line-height: 1.5;
+  color:var(--primary-violet);
+  border-left: 3px solid var(--primary-blue);
+  padding-left: 1rem;
+`;
+
+
+export const Code = styled.pre`
+  background-color: #f5f7ff !important;
+  text-shadow: white 0px 1px;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+  padding: 1em;
+  margin: 0.5em 0px;
+  overflow: auto;
+`;
+
+

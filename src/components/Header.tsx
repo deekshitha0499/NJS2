@@ -27,7 +27,7 @@ const Header = () => {
       setNavPosition({ isPinned: false, isTopPosition: true });
       return;
     }
-    if (currentScroll > lastScroll && navPosition?.isPinned) {
+    if (currentScroll > lastScroll) {
       // down
       setNavPosition({ isPinned: false, isTopPosition: false });
     } else if (currentScroll < lastScroll && !navPosition?.isPinned) {
@@ -67,7 +67,7 @@ const Header = () => {
   return (
     <HeaderContainer pinned={navPosition?.isPinned} isTop={navPosition?.isTopPosition}>
       <Navbar>
-        <Logo src="assets/images/njs2-logo.png"/>
+        <Logo src="/assets/images/njs2-logo.png"/>
         <ItemContainer>
           <ItemList>{itemListOne}</ItemList>
           <ItemList>{itemListTwo}</ItemList>
@@ -95,6 +95,9 @@ const HeaderContainer = styled.header<props>`
       : props.isTop
       ? "translateY(0)"
       : "translateY(-100%)"};
+
+  
+         
 `;
 
 const Navbar = styled.nav`

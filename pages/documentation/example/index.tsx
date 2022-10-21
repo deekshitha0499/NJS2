@@ -1,8 +1,9 @@
 import React from 'react'
+import DocumentationLayout from '../../../src/components/DocumentationLayout'
 
 const Example = () => {
   return (
-    <div>Example</div>
+    <DocumentationLayout>Example</DocumentationLayout>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { featureData } from "../../constants";
+import { featureData, sectionTitle } from "../../constants";
 import Button from "./Button";
 
 interface props {
@@ -14,7 +14,7 @@ const Feature = () => {
         <IconContainer background="rgba(138,152,235,.85)">
           <Image alt="Api-image" src="assets/images/api.png" />
         </IconContainer>
-        <FeatureHeader color="#5e72e4">Rest API endpoint</FeatureHeader>
+        <FeatureHeader color="#5e72e4">{sectionTitle.api}</FeatureHeader>
         <FeatureContent>{featureData.restApiFeat}</FeatureContent>
         <ButtonContainer>
           <Button btnText="Learn more" color="#5e72e4" />
@@ -24,7 +24,7 @@ const Feature = () => {
         <IconContainer background="rgba(84,218,161,.85)">
           <Image alt="Sever-image" src="assets/images/server.png" />
         </IconContainer>
-        <FeatureHeader color="#2dce89">Server vs Serverless</FeatureHeader>
+        <FeatureHeader color="#2dce89">{sectionTitle.server}</FeatureHeader>
         <FeatureContent>{featureData.serverFeat}</FeatureContent>
         <ButtonContainer>
           <Button btnText="Learn more" color="#2dce89" />
@@ -37,7 +37,7 @@ const Feature = () => {
             src="assets/images/authentication.png"
           />
         </IconContainer>
-        <FeatureHeader color="#fb6340">Authentication system</FeatureHeader>
+        <FeatureHeader color="#fb6340">{sectionTitle.authentication}</FeatureHeader>
         <FeatureContent>{featureData.authenticationFeat}</FeatureContent>
         <ButtonContainer>
           <Button btnText="Learn more" color="#fb6340" />
@@ -47,7 +47,7 @@ const Feature = () => {
         <IconContainer background="rgba(252,140,114,.85)">
           <Image alt="Postman-image" src="assets/images/postman-icon.png" />
         </IconContainer>
-        <FeatureHeader color="#fb6340">Postman integration</FeatureHeader>
+        <FeatureHeader color="#fb6340">{sectionTitle.postman}</FeatureHeader>
         <FeatureContent>{featureData.postmanFeat}</FeatureContent>
         <ButtonContainer>
           <Button btnText="Learn more" color="#fb6340" />
@@ -57,7 +57,7 @@ const Feature = () => {
         <IconContainer background="rgba(138,152,235,.85)">
           <Image alt="Routing-image" src="assets/images/worldwide.png" />
         </IconContainer>
-        <FeatureHeader color="#5e72e4">Custom routing</FeatureHeader>
+        <FeatureHeader color="#5e72e4">{sectionTitle.customRouting}</FeatureHeader>
         <FeatureContent>{featureData.customRoutingFeature}</FeatureContent>
         <ButtonContainer>
           <Button btnText="Learn more" color="#5e72e4" />
@@ -67,7 +67,7 @@ const Feature = () => {
         <IconContainer background="rgba(84,218,161,.85)">
           <Image alt="support-image" src="assets/images/support.png" />
         </IconContainer>
-        <FeatureHeader color="#2dce89">Localization support</FeatureHeader>
+        <FeatureHeader color="#2dce89">{sectionTitle.localization}</FeatureHeader>
         <FeatureContent>{featureData.localizationFeat}</FeatureContent>
         <ButtonContainer>
           <Button btnText="Learn more" color="#2dce89" />

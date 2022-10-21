@@ -29,6 +29,22 @@ const Sidenav = () => {
     router.push(path);
   }
 
+  const exampleSubnav=useMemo(()=>{
+    return <ListContainer>{exampleData?.map(({el},index)=>
+      <List
+        key={index}
+        onClick={() => handleNavigation('/documentation/example')}
+        isActive={false}
+        isChildList={true}
+      >
+        {el?.example_name}
+      </List>
+
+    )}
+    </ListContainer>
+  },[exampleData])
+
+
   const SideNavList = useMemo(() => {
     return documentationSideData.map(({ name, path, subNav }, index) => (
       <List
@@ -39,7 +55,10 @@ const Sidenav = () => {
         isActive={router.pathname === path && !subNav?.length ? true : false}
       >
         {name}
-        {subNav?.length && (
+        {name=='Examples'?
+        exampleSubnav
+        :
+        subNav?.length && (
           <ListContainer>
             {subNav.map(({ name, path }, index) => (
               <List
@@ -52,6 +71,7 @@ const Sidenav = () => {
               </List>
             ))}
           </ListContainer>
+            
         )}
       </List>
     ));

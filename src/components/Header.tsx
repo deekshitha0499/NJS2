@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, {useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { headerDataListOne, headerDataListTwo } from "../helper/headerData";
 
@@ -8,20 +8,29 @@ interface props {
   isTop?: boolean;
 }
 
-interface linkProps{
-  isActive?:boolean;
+interface linkProps {
+  isActive?: boolean;
 }
 
 const Header = () => {
-
-  const router = useRouter()
+  const router = useRouter();
   const [navPosition, setNavPosition] = useState<any>({
     isPinned: router.pathname.includes("/documentation") ? true : false,
-    isTopPosition: true,
+    isTopPosition: router.pathname.includes("/documentation") ? false : true,
   });
-  const [lastScroll, setLastScroll] = useState<number>(0);
+  let lastScroll : number;
 
-  function controlNavbar() {
+  useEffect(() => {
+    if(router.pathname.includes("/documentation")){
+      setNavPosition({ isPinned: true, isTopPosition: false });      
+    }
+    else window.addEventListener("scroll", controlNavbar)
+    return () => {
+      window.removeEventListener('scroll', controlNavbar)
+    }
+  }, [router]);
+
+  const controlNavbar = () => {
     const currentScroll = window.pageYOffset;
     if (currentScroll <= 0) {
       setNavPosition({ isPinned: false, isTopPosition: true });
@@ -34,40 +43,52 @@ const Header = () => {
       // up
       setNavPosition({ isPinned: true, isTopPosition: false });
     }
-    setLastScroll(currentScroll);
+    lastScroll = currentScroll;
   }
 
-  typeof window !== "undefined" &&
-    !router.pathname.includes("/documentation") &&
-    window.addEventListener("scroll", controlNavbar);
-
-  function openBlankPage(event: any, href: string) {
+  const openBlankPage = (event: any, href: string) =>{
     event.preventDefault();
     window.open(href, "_blank");
   }
-    
+
+  const getActiveRoute = (id: number) =>{
+    switch(id){
+      case 1: return router.pathname === "/";
+      case 2: return router.pathname.includes("/documentation");
+      default: return false;
+    }
+  }
+
   const itemListOne = useMemo(() => {
     return headerDataListOne.map(({ name, path }, index) => (
-        <Item key={index}>
-          <Link href={path} isActive={router.pathname === path ? true : false}>
-            {name}
-          </Link>
-        </Item>
+      <>
+      <Item key={index}>
+        <Link href={path} isActive= {getActiveRoute(index+1)}>
+          {name}
+        </Link>
+      </Item>
+      </>
     ));
-  }, []);
+  }, [router]);
 
   const itemListTwo = useMemo(() => {
     return headerDataListTwo.map(({ icon, path }, index) => (
       <Item key={index}>
-        <Link href="#" onClick={(e) => openBlankPage(e,path)}>{icon} </Link>
+        <Link href="#" onClick={(e) => openBlankPage(e, path)}>
+          {icon}{" "}
+        </Link>
       </Item>
     ));
   }, []);
 
+
   return (
-    <HeaderContainer pinned={navPosition?.isPinned} isTop={navPosition?.isTopPosition}>
+    <HeaderContainer
+      pinned={navPosition?.isPinned}
+      isTop={navPosition?.isTopPosition}
+    >
       <Navbar>
-        <Logo src="/assets/images/njs2-logo.png"/>
+        <Logo src="/assets/images/njs2-logo.png" />
         <ItemContainer>
           <ItemList>{itemListOne}</ItemList>
           <ItemList>{itemListTwo}</ItemList>
@@ -85,9 +106,10 @@ const HeaderContainer = styled.header<props>`
   width: 100%;
   box-shadow: ${(props) =>
     props.pinned ? "0 1px 10px var(--light-grey)" : "none"};
-  position: ${(props) => props.pinned ? "sticky" : "fixed"};
+  position: ${(props) => (props.pinned ? "sticky" : "fixed")};
   z-index: 100;
-  background-color: ${(props) => (props.pinned ? "var(--navy-blue)" : "transparent")};
+  background-color: ${(props) =>
+    props.pinned ? "var(--navy-blue)" : "transparent"};
   transition: all 0.15s ease;
   transform: ${(props) =>
     props.pinned
@@ -95,9 +117,6 @@ const HeaderContainer = styled.header<props>`
       : props.isTop
       ? "translateY(0)"
       : "translateY(-100%)"};
-
-  
-         
 `;
 
 const Navbar = styled.nav`
@@ -107,7 +126,7 @@ const Navbar = styled.nav`
   justify-content: space-between;
   width: 100%;
   padding: 0 12.5rem;
-  margin:0 auto;
+  margin: 0 auto;
 `;
 
 const Logo = styled.img`
@@ -134,5 +153,5 @@ const Item = styled.li`
 
 const Link = styled.a<linkProps>`
   padding: 0 1rem;
-  font-weight: ${props => props.isActive ? "bold" : "light"}
+  font-weight: ${(props) => (props.isActive ? "bold" : "light")};
 `;

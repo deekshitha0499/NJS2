@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { cliTableData } from "../../../constants";
 import DocumentationLayout from "../../../src/components/DocumentationLayout";
 import {
-  Code
+  Code, Description, SubTitle
 } from "../../../styles/globalStyle";
 
 const CLI = () => {
@@ -94,18 +94,6 @@ const CLI = () => {
 
 export default CLI;
 
-const Description = styled.p`
-  color: #3b454e;
-  font-size: 0.875rem;
-  line-height: 1.7;
-`;
-const SubTitle = styled.h3`
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 1rem 0;
-  line-height: 1.5;
-  color: var(--primary-violet);
-`;
 
 const Table = styled.table`
   width: 100%;

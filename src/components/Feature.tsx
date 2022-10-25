@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 import { featureData, sectionTitle } from "../../constants";
@@ -8,6 +9,11 @@ interface props {
 }
 
 const Feature = () => {
+  const router = useRouter();
+
+  const handleRoute = (file: string) => {
+    router.push(`/documentation/feature/${file}`);
+  };
   return (
     <FeatureSection>
       <Card>
@@ -17,7 +23,11 @@ const Feature = () => {
         <FeatureHeader color="#5e72e4">{sectionTitle.api}</FeatureHeader>
         <FeatureContent>{featureData.restApiFeat}</FeatureContent>
         <ButtonContainer>
-          <Button btnText="Learn more" color="#5e72e4" />
+          <Button
+            btnText="Learn more"
+            color="#5e72e4"
+            clickHandler={() => handleRoute("api")}
+          />
         </ButtonContainer>
       </Card>
       <Card>
@@ -27,7 +37,11 @@ const Feature = () => {
         <FeatureHeader color="#2dce89">{sectionTitle.server}</FeatureHeader>
         <FeatureContent>{featureData.serverFeat}</FeatureContent>
         <ButtonContainer>
-          <Button btnText="Learn more" color="#2dce89" />
+          <Button
+            btnText="Learn more"
+            color="#2dce89"
+            clickHandler={() => handleRoute("server")}
+          />
         </ButtonContainer>
       </Card>
       <Card>
@@ -37,10 +51,16 @@ const Feature = () => {
             src="assets/images/authentication.png"
           />
         </IconContainer>
-        <FeatureHeader color="#fb6340">{sectionTitle.authentication}</FeatureHeader>
+        <FeatureHeader color="#fb6340">
+          {sectionTitle.authentication}
+        </FeatureHeader>
         <FeatureContent>{featureData.authenticationFeat}</FeatureContent>
         <ButtonContainer>
-          <Button btnText="Learn more" color="#fb6340" />
+          <Button
+            btnText="Learn more"
+            color="#fb6340"
+            clickHandler={() => handleRoute("authentication")}
+          />
         </ButtonContainer>
       </Card>
       <Card>
@@ -50,27 +70,43 @@ const Feature = () => {
         <FeatureHeader color="#fb6340">{sectionTitle.postman}</FeatureHeader>
         <FeatureContent>{featureData.postmanFeat}</FeatureContent>
         <ButtonContainer>
-          <Button btnText="Learn more" color="#fb6340" />
+          <Button
+            btnText="Learn more"
+            color="#fb6340"
+            clickHandler={() => handleRoute("postman")}
+          />
         </ButtonContainer>
       </Card>
       <Card>
         <IconContainer background="rgba(138,152,235,.85)">
           <Image alt="Routing-image" src="assets/images/worldwide.png" />
         </IconContainer>
-        <FeatureHeader color="#5e72e4">{sectionTitle.customRouting}</FeatureHeader>
+        <FeatureHeader color="#5e72e4">
+          {sectionTitle.customRouting}
+        </FeatureHeader>
         <FeatureContent>{featureData.customRoutingFeature}</FeatureContent>
         <ButtonContainer>
-          <Button btnText="Learn more" color="#5e72e4" />
+          <Button
+            btnText="Learn more"
+            color="#5e72e4"
+            clickHandler={() => handleRoute("customRouting")}
+          />
         </ButtonContainer>
       </Card>
       <Card>
         <IconContainer background="rgba(84,218,161,.85)">
           <Image alt="support-image" src="assets/images/support.png" />
         </IconContainer>
-        <FeatureHeader color="#2dce89">{sectionTitle.localization}</FeatureHeader>
+        <FeatureHeader color="#2dce89">
+          {sectionTitle.localization}
+        </FeatureHeader>
         <FeatureContent>{featureData.localizationFeat}</FeatureContent>
         <ButtonContainer>
-          <Button btnText="Learn more" color="#2dce89" />
+          <Button
+            btnText="Learn more"
+            color="#2dce89"
+            clickHandler={() => handleRoute("localization")}
+          />
         </ButtonContainer>
       </Card>
     </FeatureSection>

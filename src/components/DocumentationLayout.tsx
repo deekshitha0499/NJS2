@@ -5,6 +5,10 @@ import { sectionSubHeader, sectionTitle } from "../../constants";
 import { DocumentTitle } from "../../styles/globalStyle";
 import Sidenav from "./Sidenav";
 
+interface props{
+  width: any;
+}
+
 const DocumentationLayout = ({ children }: any) => {
   const router = useRouter();
   const pageTitle: any = router.pathname.split("/").pop();
@@ -12,7 +16,7 @@ const DocumentationLayout = ({ children }: any) => {
   return (
     <DocumentationContainer>
       <Sidenav />
-      <Section>
+      <Section width={pageTitle=='example'?'75%':'65%'}>
         <DocumentTitle>
           {pageTitle == "example" ? title : sectionTitle[pageTitle]}
         </DocumentTitle>
@@ -30,8 +34,8 @@ const DocumentationContainer = styled.div`
   display: flex;
   width: 100%;
 `;
-const Section = styled.section`
-  width: 65%;
+const Section = styled.section<props>`
+  width: ${(props)=>props.width};
   display: flex;
   flex-direction: column;
   justify-content: start;

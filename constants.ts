@@ -9,7 +9,7 @@ const documentationSideData = [
   },
   {
     name: "Packages",
-    path: "",
+    path: "/documentation/packages",
   },
   {
     name: "Features",
@@ -149,6 +149,90 @@ const cliTableData = [
   },
 ]
 
+const packageTypes = [
+  {
+    id: 1,
+    name: "Base",
+  },
+  {
+    id: 2,
+    name: "Endpoint",
+  },
+  {
+    id: 3,
+    name: "Helper",
+  },
+  {
+    id: 4,
+    name: "Websocket",
+  },
+];
+
+const basePackageFundamentals = [
+  {
+    id: 1,
+    name: "base: Contains core logics that are required for execution of API’s, and managing the interfaces.",
+  },
+  {
+    id: 2,
+    name: "dist: Compiled build will be stored in dist folder",
+  },
+  {
+    id: 3,
+    name: "lib: lib folder contains global database data types and response objects",
+  },
+  {
+    id: 4,
+    name: "package: package folder contains database and other helper that can be used in projects",
+  },
+  {
+    id: 5,
+    name: "package/template: templates folder contains various code templates that are used by Base, Helper, Endpoint packages and project",
+  },
+];
+
+const packageEndPoints = [
+  { id: 1, name: "njs2-auth-apple" },
+  {
+    id: 2,
+    name: "njs2-auth-email",
+  },
+  {
+    id: 3,
+    name: "njs2-auth-facebook",
+  },
+  {
+    id: 4,
+    name: "njs2-auth-guest",
+  },
+  {
+    id: 5,
+    name: "njs2-debug",
+  },
+  {
+    id: 6,
+    name: "njs2-auth-google",
+  },
+  {
+    id: 7,
+    name: "njs2-auth-phone",
+  },
+  {
+    id: 8,
+    name: "njs2-search",
+  },
+  {
+    id: 9,
+    name: "njs2-friends",
+  },
+];
+
+const plugins = [
+  { id: 1, name: "njs2-email-aws"},
+  { id: 2, name: "njs2-email-smtp"},
+  { id: 3, name: "njs2-sms-twilio"},
+];
+
 const sectionTitle:any = {
   api: "Rest API endpoint",
   authentication: "Authentication system",
@@ -157,7 +241,8 @@ const sectionTitle:any = {
   postman: "Postman integration",
   server: "Server vs Serverless",
   documentation:'Getting started',
-  cli: "CLI"
+  cli: "CLI",
+  packages : "Packages",
 };
 
 const sectionSubHeader: any ={
@@ -171,5 +256,9 @@ export {
   featureData,
   sectionTitle,
   cliTableData,
-  sectionSubHeader
+  sectionSubHeader,
+  packageTypes,
+  basePackageFundamentals,
+  packageEndPoints,
+  plugins,
 };

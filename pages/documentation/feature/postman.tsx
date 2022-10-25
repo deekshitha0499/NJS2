@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { featureData} from "../../../constants";
 import DocumentationLayout from "../../../src/components/DocumentationLayout";
-import { DocumentTitle } from "../../../styles/globalStyle";
+import { Description, DocumentTitle } from "../../../styles/globalStyle";
 
 const Postman = () => {
   const router = useRouter();
@@ -10,7 +10,7 @@ const Postman = () => {
 
   return (
     <DocumentationLayout>
-      <p>{featureData.postmanFeat}</p>
+      <Description>{featureData.postmanFeat}</Description>
     </DocumentationLayout>
   );
 };

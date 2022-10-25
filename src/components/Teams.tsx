@@ -4,6 +4,7 @@ import { teamData } from "../../constants";
 import {Section, Title} from "../../styles/globalStyle"
 
 const Teams = () => {
+  
   const Contributors = useMemo(() => {
     return teamData.map(({ name, imagePath, role }, index) => (
       <TeamMember key={index}>

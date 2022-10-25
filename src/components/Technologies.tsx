@@ -5,7 +5,7 @@ import { Section, Title } from "../../styles/globalStyle";
 
 const Technologies = () => {
     
-  function openLink(event: any, href: string) {
+  const openLink = (event: any, href: string) =>{
     event.preventDefault();
     window.open(href, "_blank");
   }

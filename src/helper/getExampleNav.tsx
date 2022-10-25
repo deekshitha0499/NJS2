@@ -5,7 +5,7 @@ const getNavItemsForExample = () => {
       return contents
         .filter((d: any) => d.name.startsWith("example"))
         .map((d: any) => {
-          return { example_name: d.name.split("example.")[1], sha: d.sha };
+          return { example_name: d.name.split("example.")[1], url: d.git_url };
         });
     });
 };

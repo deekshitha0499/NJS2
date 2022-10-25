@@ -1,10 +1,36 @@
-import React from 'react'
-import DocumentationLayout from '../../../src/components/DocumentationLayout'
+import router from "next/router";
+import React, { useEffect, useState } from "react";
+import DocumentationLayout from "../../../src/components/DocumentationLayout";
+import { Code } from "../../../styles/globalStyle";
 
 const Example = () => {
-  return (
-    <DocumentationLayout>Example</DocumentationLayout>
-  )
-}
+  const [code, setCode] = useState("");
+  const { url } = router?.query;
+  useEffect(() => {
+    getExampleData();
+  }, [url]);
 
-export default Example
+  const getExampleData = async () => {
+    await fetch(`${url}`)
+      .then((data) => data.json())
+      .then((data) => {
+        fetch(`${data.tree[0].url}`, {
+          headers: {
+            accept: "application/vnd.github.VERSION.raw",
+          },
+        })
+          .then((data) => data.text())
+          .then((code) => {
+            setCode(code);
+          })
+          .catch(console.error);
+      });
+  };
+  return (
+    <DocumentationLayout>
+      <Code>{code}</Code>
+    </DocumentationLayout>
+  );
+};
+
+export default Example;

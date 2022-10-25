@@ -27,15 +27,15 @@ const Sidenav = () => {
     }
   };
 
-  function handleNavigation(path: string) {
+  const handleNavigation = (path: string) => {
     router.push(path);
   }
 
   const ExampleSubnav = useMemo(() => {
-    return exampleData?.map(({ example_name ,sha}, index) => (
+    return exampleData?.map(({ example_name ,url}, index) => (
       <List
         key={index}
-        onClick={() => handleNavigation(`/documentation/example?title=${example_name}&sha=${sha}`)}
+        onClick={() => handleNavigation(`/documentation/example?title=${example_name}&url=${url}`)}
         isActive={example_name==title}
         isChildList={true}
       >
@@ -87,8 +87,8 @@ export default Sidenav;
 
 const Navbar = styled.nav`
   width: 18rem;
-  top: 4.5rem;
-  height: calc(100vh - 4.5rem);
+  top: 3.75rem;
+  height: calc(100vh - 3.75rem);
   position: sticky;
   background-color: var(--late-primary-grey);
   padding: 1.5rem 1.5rem;

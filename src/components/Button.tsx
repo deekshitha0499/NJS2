@@ -3,18 +3,23 @@ import styled from "styled-components";
 
 interface ButtonProps {
   btnText: string;
-  color:string;
+  color: string;
+  clickHandler: Function;
 }
-const Button = ({ btnText,color }: ButtonProps) => {
-  return <StyledButton color={color}>{btnText}</StyledButton>;
+const Button = ({ btnText, color, clickHandler }: ButtonProps) => {
+  return (
+    <StyledButton color={color} onClick={() => clickHandler()}>
+      {btnText}
+    </StyledButton>
+  );
 };
 
 export default React.memo(Button);
 
 const StyledButton = styled.button`
-  color:white;
+  color: white;
   text-transform: uppercase;
-  background-color: ${props=>props.color};
+  background-color: ${(props) => props.color};
   border: none;
   border-radius: 0.25rem;
   padding: 0.65rem 0.95rem;
@@ -22,4 +27,5 @@ const StyledButton = styled.button`
   font-weight: 600;
   line-height: 1.5;
   letter-spacing: 0.01rem;
+  cursor: pointer;
 `;

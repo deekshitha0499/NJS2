@@ -1,10 +1,11 @@
-import router from "next/router";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import DocumentationLayout from "../../../src/components/DocumentationLayout";
 import { Code } from "../../../styles/globalStyle";
 
 const Example = () => {
   const [code, setCode] = useState("");
+  const router=useRouter()
   const { url } = router?.query;
   useEffect(() => {
     getExampleData();

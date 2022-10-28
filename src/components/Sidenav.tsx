@@ -1,8 +1,9 @@
 import { getNavItemsForExample } from "../helper/getExampleNav";
 import { useRouter } from "next/router";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { documentationSideData } from "../../constants";
+import { ApiDetailContext } from "../context/ApiDetailProvider";
 
 interface props {
   isActive?: boolean;
@@ -10,6 +11,7 @@ interface props {
 }
 
 const Sidenav = () => {
+  const {setApiDetail} : any = useContext(ApiDetailContext)
   const [exampleData, setExampleData] = useState<Array<any>>([]);
   const router = useRouter();
   const {title}=router.query;
@@ -20,8 +22,9 @@ const Sidenav = () => {
 
   const getExampleHeader = async () => {
     try {
-      const res = await getNavItemsForExample();
+      const res = await getNavItemsForExample();      
       setExampleData(res);
+      setApiDetail(res)
     } catch {
       console.log("error");
     }
@@ -32,10 +35,10 @@ const Sidenav = () => {
   }
 
   const ExampleSubnav = useMemo(() => {
-    return exampleData?.map(({ example_name ,url}, index) => (
+    return exampleData?.map(({example_name}, index) => (
       <List
         key={index}
-        onClick={() => handleNavigation(`/documentation/example?title=${example_name}&url=${url}`)}
+        onClick={() => handleNavigation(`/documentation/example?title=${example_name}`)}
         isActive={example_name==title}
         isChildList={true}
       >
@@ -86,7 +89,7 @@ const Sidenav = () => {
 export default Sidenav;
 
 const Navbar = styled.nav`
-  width: 18rem;
+  width: 15rem;
   top: 3.75rem;
   height: calc(100vh - 3.75rem);
   position: sticky;

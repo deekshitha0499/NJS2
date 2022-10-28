@@ -36,12 +36,12 @@ const DocumentTitle = styled.h2`
   color: var(--primary-violet);
   border-left: 3px solid var(--primary-blue);
   padding-left: 1rem;
+  text-transform: capitalize;
 `;
 
 const Code = styled.pre`
   background-color: #f5f7ff !important;
   text-shadow: white 0px 1px;
-  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -53,6 +53,7 @@ const Code = styled.pre`
   padding: 1em;
   margin: 0.5em 0px;
   overflow: auto;
+  font-size: 0.9rem;
 `;
 
 const Description = styled.p<DescriptionProps>`
@@ -68,6 +69,7 @@ const SubTitle = styled.h3`
   margin: 1rem 0;
   line-height: 1.5;
   color: var(--primary-violet);
+  text-transform: capitalize;
 `;
 
 export { Section, Title, DocumentTitle, Code, Description, SubTitle };

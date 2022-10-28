@@ -2,10 +2,12 @@ import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { headerDataListOne, headerDataListTwo } from "../helper/headerData";
+import { getActiveRoute, isDocumentationPage } from "../helper/helper";
 
 interface props {
   pinned: boolean;
   isTop?: boolean;
+  isDocHeader?: boolean;
 }
 
 interface linkProps {
@@ -15,55 +17,53 @@ interface linkProps {
 const Header = () => {
   const router = useRouter();
   const [navPosition, setNavPosition] = useState<any>({
-    isPinned: router.pathname.includes("/documentation") ? true : false,
-    isTopPosition: router.pathname.includes("/documentation") ? false : true,
+    isPinned: isDocumentationPage(router.pathname) ? true : false,
+    isTopPosition: isDocumentationPage(router.pathname) ? false : true,
+    isDocumentHeader: isDocumentationPage(router.pathname) ? true : false,
   });
-  let lastScroll : number;
+  let lastScroll: number;
+
 
   useEffect(() => {
-    if(router.pathname.includes("/documentation")){
-      setNavPosition({ isPinned: true, isTopPosition: false });      
-    }
-    else window.addEventListener("scroll", controlNavbar)
+    if (isDocumentationPage(router.pathname)) {
+      setNavPosition({
+        isPinned: true,
+        isTopPosition: false,
+        isDocumentHeader: true,
+      });
+    } 
+    else window.addEventListener("scroll", controlNavbar);
     return () => {
-      window.removeEventListener('scroll', controlNavbar)
-    }
+      window.removeEventListener("scroll", controlNavbar);
+    };
   }, [router]);
 
   const controlNavbar = () => {
     const currentScroll = window.pageYOffset;
     if (currentScroll <= 0) {
-      setNavPosition({ isPinned: false, isTopPosition: true });
+      setNavPosition({...navPosition, isPinned: false, isTopPosition: true });
       return;
     }
     if (currentScroll > lastScroll) {
       // down
-      setNavPosition({ isPinned: false, isTopPosition: false });
+      setNavPosition({...navPosition, isPinned: false, isTopPosition: false });
     } else if (currentScroll < lastScroll && !navPosition?.isPinned) {
       // up
-      setNavPosition({ isPinned: true, isTopPosition: false });
+      setNavPosition({...navPosition, isPinned: true, isTopPosition: false });
     }
     lastScroll = currentScroll;
-  }
+  };
 
   const openBlankPage = (event: any, href: string) =>{
     event.preventDefault();
     window.open(href, "_blank");
   }
 
-  const getActiveRoute = (id: number) =>{
-    switch(id){
-      case 1: return router.pathname === "/";
-      case 2: return router.pathname.includes("/documentation");
-      default: return false;
-    }
-  }
-
   const itemListOne = useMemo(() => {
     return headerDataListOne.map(({ name, path }, index) => (
       <>
       <Item key={index}>
-        <Link href={path} isActive= {getActiveRoute(index+1)}>
+        <Link href={path} isActive= {getActiveRoute(index+1,router.pathname)}>
           {name}
         </Link>
       </Item>
@@ -86,6 +86,7 @@ const Header = () => {
     <HeaderContainer
       pinned={navPosition?.isPinned}
       isTop={navPosition?.isTopPosition}
+      isDocHeader = {navPosition?.isDocumentHeader}
     >
       <Navbar>
         <Logo src="/assets/images/njs2-logo.png" />
@@ -109,7 +110,7 @@ const HeaderContainer = styled.header<props>`
   position: ${(props) => (props.pinned ? "sticky" : "fixed")};
   z-index: 100;
   background-color: ${(props) =>
-    props.pinned ? "var(--navy-blue)" : "transparent"};
+    props.pinned ? props.isDocHeader ? "#11cdef" : "var(--navy-blue)" : "transparent"};
   transition: all 0.15s ease;
   transform: ${(props) =>
     props.pinned
